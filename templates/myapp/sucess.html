@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+<head>
+    <meta http-equiv="refresh" content="30">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bootstrap website</title>
+    <link rel="stylesheet" type=text/css href="css/bootstrap.min.css">
+    <link rel="stylesheet" type=text/css href="css/bootstrap.grid.min.css">
+    <link rel="stylesheet" type=text/css href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" type=text/css href="./style.css">
+    <script type="text/javascript" src="./js/jquery-3.4.1.min.js"></script>
+    <style>
+    .side{
+      margin-left: 15px;
+    }
+    .side1{
+      margin-left: 550px;
+    }
+    </style>
+</head>
+    <body class="">
+
+            <div class="card header">
+                    <a class="navbar-brand bg-danger"><img width="50px" height="50px" src="images/alclogo.png">
+        <h2><center>Examination Rooms</center></h2>
+                    </a>
+
+
+                </div>
+            <h2>{{msg4}}</h2>
+            <h4 class="text-danger" align="center">select the required room for seating allotment</h4>
+<form method="POST" action="/final_list/">
+    {% csrf_token %}
+
+                      <div class="input-group">
+                          <span class="input-group-addon side">
+                            <input type="checkbox" aria-label="..." value="2p7" name="checks[]">
+                          </span><p class="side">2P7 (100 seats) (equall to two rooms)</p>
+                        </div><br>
+                          <div class="input-group">
+                            <span class="input-group-addon side">
+                              <input type="checkbox" aria-label="..." value="2p2" name="checks[]">
+                            </span> <p class="side">2P2 (40 seats)</p>
+                          </div><br><div class="input-group">
+                            <span class="input-group-addon side">
+                              <input type="checkbox" aria-label="..." value="2p4" name="checks[]">
+                            </span> <p class="side">2P4 (40 seats)</p>
+                          </div><br><div class="input-group">
+                            <span class="input-group-addon side">
+                              <input type="checkbox" aria-label="..." value="2p5" name="checks[]">
+                            </span> <p class="side">2P5 (seats)</p>
+                          </div><br><div class="input-group">
+                            <span class="input-group-addon side">
+                              <input type="checkbox" aria-label="..." value="2p6" name="checks[]">
+                            </span> <p class="side">2P6 (40 seats)</p>
+
+                          </div><br>
+                        <h2 class="text danger" >{{msg3}}</h2>
+                          <button type="submit" class="side1 bg-danger text-white btn"><i class="fas fa-sign-in-alt"></i>
+                            get result</button>
+                        <br><a class="side1 bg-danger text-white btn" href="/admin" role="button">ADMIN</a>

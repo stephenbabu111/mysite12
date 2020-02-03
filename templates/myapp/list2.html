@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bootstrap website</title>
+    <link rel="stylesheet" type=text/css href="css/bootstrap.min.css">
+    <link rel="stylesheet" type=text/css href="css/bootstrap.grid.min.css">
+    <link rel="stylesheet" type=text/css href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" type=text/css href="./style.css">
+    <script type="text/javascript" src="./js/jquery-3.4.1.min.js"></script>
+    <style>
+    .side{
+      margin-left: 15px;
+    }
+    .side1{
+      margin-left: 550px;
+    }
+    </style>
+</head>
+    <body class="">
+
+            <div class="card header">
+                    <a class="navbar-brand bg-danger"><img width="50px" height="50px" src="images/alclogo.png">
+                        <center>Examination Rooms</center>
+                    </a>
+
+                </div><br>
+            {% if "2p7" in dict %}
+            <a href="/2p7_view/"><button class="btn btn-primary" type="submit">2P7</button></a><br><br>
+            {% endif %}
+                {% if "2p2" in dict %}
+              <a href="/2p2_view/"><button class="btn btn-primary" type="submit">2P2</button></a><br><br>
+                {% endif %}
+                {% if "2p4" in dict %}
+            <a href="/2p4_view/"><button class="btn btn-primary" type="submit">2P4</button></a><br><br>
+                {% endif %}
+            {% if "2p5" in dict %}
+            <a href="/2p5_view/"><button class="btn btn-primary" type="submit">2P5</button></a><br><br>
+            {% endif %}
+            {% if "2p6" in dict %}
+            <a href="/2p6_view/"><button class="btn btn-primary" type="submit">2P6</button></a><br><br>
+            {% endif %}
+
+
+             </body>

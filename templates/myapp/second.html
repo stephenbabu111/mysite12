@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html lang="en">
+<head>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="{%static 'css/second.css' %}">
+<style >
+    .all{
+    display:none;
+    }</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('input[type="checkbox"]').click(function(){
+        var inputValue = $(this).attr("value");
+        $("." + inputValue).toggle();
+    });
+});
+</script>
+</head>
+    <body class="">
+
+            <div class="card header">
+                    <a class="navbar-brand bg-danger"><img width="50px" height="50px" src="{%static 'images/alclogo.gif' %}">
+                        <center>Exam seating  arrangement system</center>
+                    </a>
+
+                </div>
+            <form method="POST" action="/class_select2/" >
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-2">
+                      <div class="input-group">
+                          <span class="input-group-addon">
+                            <input type="checkbox" aria-label="..." value="mca">
+
+                          </span> MCA
+                        </div><!-- /input-group -->
+                     <div class="row all mca">
+                        <div class="col-2">
+                            <input class="input" name="amca"  type="number" placeholder="AMCA"  max='100' min='1' unchecked ><br><br>
+                            <input class="input" name="nmca" type="number" placeholder="NMCA"   max='100' min='1' ><br><br>
+                            <input class="input" name="dmca" type="number" placeholder="DMCA"  max='100' min='1' >
+
+                        </div>
+                     </div>
+                </div>
+
+                <div class="col-2">
+                  <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="checkbox" aria-label="..." value="mba">
+                      </span>
+                     MBA
+                    </div><!-- /input-group -->
+                    <div class="row all mba">
+                        <div class="col-2">
+                            <input class="input" name="amba" type="number" placeholder="AMBA"   max='100' min='1' ><br><br>
+                            <input class="input" name="nmba" type="number" placeholder="NMBA"  max='100' min='1' >
+
+
+                        </div>
+                     </div>
+            </div>
+
+            <div class="col-2">
+              <div class="input-group">
+                  <span class="input-group-addon">
+                    <input type="checkbox" aria-label="..." value="msp">
+                  </span>
+                 MSC(Physics)
+                </div><!-- /input-group -->
+                <div class="row all msp">
+                    <div class="col-2">
+                        <input class="input" name="amph" type="number" placeholder="AMPH"   max='100' min='1' ><br><br>
+                        <input class="input" name="nmph" type="number" placeholder="NMPH"   max='100' min='1' >
+
+
+                    </div>
+                 </div>
+        </div>
+        <div class="col-2">
+          <div class="input-group">
+              <span class="input-group-addon">
+                <input type="checkbox" aria-label="..." value="msc">
+              </span>
+             MSC(chemistry)
+            </div><!-- /input-group -->
+            <div class="row all msc">
+                <div class="col-2">
+                    <input class="input" name="amcy" type="number" placeholder="AMCY"   max='100' min='1' ><br><br>
+                    <input class="input" name="nmcy" type="number" placeholder="NMCY"  max='100' min='1' >
+
+
+                </div>
+             </div>
+    </div>
+    <div class="col-2">
+      <div class="input-group">
+          <span class="input-group-addon">
+            <input type="checkbox" aria-label="..." value="msb">
+          </span>
+         MSC(Botany)
+        </div><!-- /input-group -->
+        <div class="row all msb">
+            <div class="col-2">
+                <input class="input" name="amby" type="number" placeholder="AMBY"  max='100' min='1' ><br><br>
+                <input class="input" name="nmby" type="number" placeholder="NMBY"   max='100' min='1' >
+
+
+            </div>
+         </div>
+</div>
+<div class="col-2">
+  <div class="input-group">
+      <span class="input-group-addon">
+        <input type="checkbox" aria-label="..." value="msm">
+      </span>
+     MSC(Maths)
+    </div><!-- /input-group -->
+    <div class="row all msm">
+        <div class="col-2">
+            <input class="input" name="amma" type="number" placeholder="AMMA"   max='100' min='1' ><br><br>
+            <input class="input" name="nmma" type="number" placeholder="NMMA"   max='100' min='1' ><br><br>
+
+
+        </div>
+     </div>
+</div>
+                </div><br>
+                <h4 align="center" class="text-danger">{{msg}}</h4>
+<h1 align="center"><button type="submit" class="bg-danger text-white btn"><i class="fas fa-sign-in-alt"></i>
+                        NEXT</button></h1>
+</form></body>
+</html>
