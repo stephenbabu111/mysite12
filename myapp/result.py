@@ -29,7 +29,6 @@ def result1(cls_name,cls_value,room_dict):
             for k in range(0,10):
               if ind>=0:
                 if j%2==0 and cls_value[a] !=0:
-                    print('here is the data')
                     x=x+1
                     room_dict[i][k,j]=cls_name[a]+str(x)
                     cls_value[a]-=1
@@ -66,9 +65,6 @@ def result1(cls_name,cls_value,room_dict):
                     if cls_value[b]==0  and  ind>=(b+2):
                         b+=2
                         y = 0
-
-  for i in room_dict:
-      print(room_dict[i])
   return room_dict
 
     

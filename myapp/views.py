@@ -2,31 +2,16 @@ from django.shortcuts import render,redirect
 from .models import user,exam_halls
 from math import ceil
 from myapp.result import result1
-
-
-
-msg3=''
-
-
-
-cls_name=[]
-cls_value=[]
 global room_dict1
-
 global total
-# Create your views here.
-
 def home_view(request):
     str=''
     return render(request,'myapp/login.html',{'msg':str})
 def suc_conf(request):
     if request.method=='POST':
-        print('login conf view is running')
         username=request.POST.get('username')
         password=request.POST.get('password')
         log=user.objects.filter(username=username,password=password).values('username','password')
-        print(log)
-        #print(log[0]['username'])
         str='myapp/sucess.html'
         str1=' '
         name=' '
@@ -36,28 +21,22 @@ def suc_conf(request):
             return render(request,'myapp/login.html',{'msg':str})
 
         else:
-            print('login was succesfull')
             return render(request,'myapp/second.html')
     return render(request,'myapp/forgot.html')
 def forgot_view(request):
     msg='enter your username to get password'
     return render(request,'myapp/forgot.html',{'msg':msg})
 def forgot2_view(request):
-    print("running")
     msg=' '
     from myapp.forgot import send_message
     if request.method=="POST":
-        print("this view is running")
         usernm=request.POST.get("username")
-        print(usernm)
         user2=user.objects.filter(username=usernm)
         print(user2)
         if user2:
             user2 = user.objects.filter(username=usernm).values('phone', 'password')
-            print(user2)
             phone=user2[0]['phone']
             password=user2[0]['password']
-            print(phone,password)
             try:
                 send_message(phone,password)
 
@@ -90,6 +69,10 @@ def class_select2_view(request):
         nmma=request.POST.get("nmma")
 
         msg=''
+        global cls_name
+        cls_name=[]
+        global cls_value
+        cls_value=[]
         global total
         total=0
 
@@ -166,7 +149,9 @@ def class_select2_view(request):
                 cls_value.append(nmma)
             global r
             r = ceil(total/40)
+
             global msg3
+            msg3='select rooms'
             if r==1:
                 msg3="slect one room"
 
@@ -186,7 +171,11 @@ def class_select2_view(request):
                 msg3="select eight rooms"
             if r==9:
                 msg3="select nine rooms"
-
+            if r==10:
+                msg3="select Ten rooms"
+            if r==11:
+                msg3="select eleven rooms"
+            print('the r value is',r)
             print("the data is", amca, nmca, dmca, amba, nmba, amph, nmph, amcy, nmcy, amby, nmby, amma, nmma)
             print(type(amca))
             print(dict)
@@ -197,9 +186,9 @@ def class_select2_view(request):
         return render(request,'myapp/sucess.html',{'msg3':msg3,'halls':exam_hall})
 def list_view(request):
     exam_hall = exam_halls.objects.all()
-
     global total
     global room_dict1
+    global msg3
     room_dict={}
     if request.method=='POST':
         var=request.POST.getlist("checks[]")
@@ -218,12 +207,8 @@ def list_view(request):
             else:
                 room=room+40
             room_dict[i] = "y"
-        print(room)
-
-
-        print(room_dict)
         msg4="Total "+str(total)+" students write the examination "
-        if total<room and (room-total)<=39 :
+        if total>room and (room-total)<=39 :
             return render(request,"myapp/sucess.html",{'msg3':msg3,'halls':exam_hall})
         elif (room-total)>=40 and "2p7" not in var:
             return render(request,"myapp/sucess.html",{'msg3':"select required rooms only.You required "+msg3+"only",'halls':exam_hall})
@@ -233,12 +218,10 @@ def list_view(request):
 
 def room_view(request):
     if request.method=='POST':
-        print("this is working")
         get_value=request.POST.get('button')
-        print('the value is'+get_value)
     global room_dict1
     if get_value=='2p7':
-        return render(request,'myapp/sp7.html',{'dict':room_dict1[get_value],'room':get_value} )
+        return render(request,'myapp/sp7.html',{'dict':room_dict1[get_value],'room':get_value})
     else:
-        return render(request, 'myapp/sp2.html', {'dict': room_dict1[get_value], 'room': get_value})
+        return render(request,'myapp/sp2.html',{'dict': room_dict1[get_value], 'room': get_value})
 

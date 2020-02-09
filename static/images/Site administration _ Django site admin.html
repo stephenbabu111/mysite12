@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:8000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login page</title>
+    </head><body class="p-3 mb-2 bg-secondary text-white ">
+    
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
+<link rel="stylesheet" href="http://127.0.0.1:8000/static/css/second.css">
+<style>
+    .bg {
+
+    background-image: url("/static/images/img4.jpg");
+    background-repeat: no-repeat;
+
+    height:400px;
+    width:400px;
+    }
+   
+</style>
+
+
+        
+
+            <div class="bg-secondary"> <marquee> <h3 align="center">Exam Seating Arrangement System</h3></marquee></div>
+
+        <center>
+
+        <div style="width: 500px; height: 440px; border:5px; border-style: inset;" class="Jumbotron bg-dark px-3 py-3 mx-3 my-3 bg ani">
+            <img width="100px" height="100px" src="http://127.0.0.1:8000/static/images/alclogo.gif">
+            <h4 class="text-danger"></h4>
+            <form class="px-2 py-2" method="POST" action="http://127.0.0.1:8000/login_conf/">
+                <input type="hidden" name="csrfmiddlewaretoken" value="e67rYb86uvEXUv5sgcPlHGLSBMvPblbd8Ss0ly12je1sPEARXHRZiG5ETm8gZgs3">
+            <input type="text" class="form-control my-3" placeholder="Enter username" name="username" required="">
+            <div class="input-append input-group"><input type="password" class="form-control my-3" placeholder="Enter password" name="password" data-toggle="password" required=""><input type="text" class="form-control my-3" placeholder="Enter password" style="display: none;"><span tabindex="100" title="Click here to show/hide password" class="add-on input-group-addon" style="cursor: pointer;"><i class="icon-eye-open glyphicon glyphicon-eye-open"></i></span></div>
+            <button type="submit" class="bg-danger text-white btn"><i class="fas fa-sign-in-alt"></i>
+                        Login</button>
+            </form>
+
+           <br> <a class="bg-danger text-white btn" href="http://127.0.0.1:8000/admin" role="button">ADMIN</a><br>
+             <a class="fa ds" href="http://127.0.0.1:8000/forgot/">forget password</a>
+            </div>
+      </center>
+      
+
+      </body></html>
