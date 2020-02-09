@@ -27,10 +27,6 @@ path('home/',views.home_view),
     path('class_select/',views.class_select_view),
     path('class_select2/',views.class_select2_view),
     path('final_list/',views.list_view),
-    path('2p2_view/',views.sp2_view),
-    path('2p4_view/',views.sp4_view),
-    path('2p5_view/',views.sp5_view),
-    path('2p6_view/',views.sp6_view),
-    path('2p7_view/',views.sp7_view),
-    url(r'^$',views.home_view)
+    path('room_view/',views.room_view),
+      url(r'^$',views.home_view)
 ]

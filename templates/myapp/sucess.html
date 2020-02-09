@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en"
 <head>
+    <link rel="stylesheet" href="{% static 'css/class.css' %}">
+
     <meta http-equiv="refresh" content="30">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="utf-8">
@@ -9,8 +12,7 @@
     <link rel="stylesheet" type=text/css href="css/bootstrap.min.css">
     <link rel="stylesheet" type=text/css href="css/bootstrap.grid.min.css">
     <link rel="stylesheet" type=text/css href="css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" type=text/css href="./style.css">
-    <script type="text/javascript" src="./js/jquery-3.4.1.min.js"></script>
+     <script type="text/javascript" src="./js/jquery-3.4.1.min.js"></script>
     <style>
     .side{
       margin-left: 15px;
@@ -18,46 +20,46 @@
     .side1{
       margin-left: 550px;
     }
+    .bg {
+
+    background-image: url("{% static 'images/img3.jpg' %}");
+    background-repeat: no-repeat;
+        background-size:cover;
+
+    height:700px;
+    width:1230px;
+    }
+
     </style>
 </head>
-    <body class="">
-
-            <div class="card header">
-                    <a class="navbar-brand bg-danger"><img width="50px" height="50px" src="images/alclogo.png">
-        <h2><center>Examination Rooms</center></h2>
-                    </a>
+    <body class="" textalign="" >
 
 
-                </div>
+<div class="p-3 mb-2 bg-dark text-white ani" >
+
+    <h2 align="center">Examination Rooms</h2>
+<a href="/class_select/" align="left"><h5 align="right">BACK</a> &nbsp&nbsp&nbsp<a href="/admin/">ADMIN</h5></a>
+</div>
+
             <h2>{{msg4}}</h2>
-            <h4 class="text-danger" align="center">select the required room for seating allotment</h4>
-<form method="POST" action="/final_list/">
+<div class="bg" align="center" style="height:500px width:1230px">
+            <h4 class="text-danger" >select the required room for seating allotment</h4>
+<div align="center">
+            <form method="POST" align="center" action="/final_list/">
     {% csrf_token %}
-
-                      <div class="input-group">
+<div class="text-warning">{% for i in halls %}
+    <h5>                      <div class="input-group">
                           <span class="input-group-addon side">
-                            <input type="checkbox" aria-label="..." value="2p7" name="checks[]">
-                          </span><p class="side">2P7 (100 seats) (equall to two rooms)</p>
+                            <input type="checkbox" aria-label="..." value="{{i.roomno}}" name="checks[]">
+                          </span><p class="side">{{i.roomno}}</p>
                         </div><br>
-                          <div class="input-group">
-                            <span class="input-group-addon side">
-                              <input type="checkbox" aria-label="..." value="2p2" name="checks[]">
-                            </span> <p class="side">2P2 (40 seats)</p>
-                          </div><br><div class="input-group">
-                            <span class="input-group-addon side">
-                              <input type="checkbox" aria-label="..." value="2p4" name="checks[]">
-                            </span> <p class="side">2P4 (40 seats)</p>
-                          </div><br><div class="input-group">
-                            <span class="input-group-addon side">
-                              <input type="checkbox" aria-label="..." value="2p5" name="checks[]">
-                            </span> <p class="side">2P5 (seats)</p>
-                          </div><br><div class="input-group">
-                            <span class="input-group-addon side">
-                              <input type="checkbox" aria-label="..." value="2p6" name="checks[]">
-                            </span> <p class="side">2P6 (40 seats)</p>
+                          {% endfor %}
 
-                          </div><br>
-                        <h2 class="text danger" >{{msg3}}</h2>
-                          <button type="submit" class="side1 bg-danger text-white btn"><i class="fas fa-sign-in-alt"></i>
+
+                          <h2 class="text-primary" >{{msg3}}</h2>
+                          <button type="submit" class=" bg-danger text-white btn"><i class="fas fa-sign-in-alt"></i>
                             get result</button>
-                        <br><a class="side1 bg-danger text-white btn" href="/admin" role="button">ADMIN</a>
+                        <a class=" bg-danger text-white btn" href="/admin" role="button">ADMIN</a>
+
+
+            </form></div></body>

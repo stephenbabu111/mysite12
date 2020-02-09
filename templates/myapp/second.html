@@ -4,13 +4,24 @@
 <html lang="en">
 <head>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="{%static 'css/second.css' %}">
+<link rel="stylesheet" href="{%static 'css/class.css' %}">
 <style >
     .all{
     display:none;
-    }</style>
+    }
+.bg {
+
+    background-image: url("{% static 'images/img5.jpg' %}");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height:400px;
+    width:1000px;
+    }
+</style>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <script>
+
 $(document).ready(function(){
     $('input[type="checkbox"]').click(function(){
         var inputValue = $(this).attr("value");
@@ -21,17 +32,19 @@ $(document).ready(function(){
 </head>
     <body class="">
 
-            <div class="card header">
-                    <a class="navbar-brand bg-danger"><img width="50px" height="50px" src="{%static 'images/alclogo.gif' %}">
-                        <center>Exam seating  arrangement system</center>
-                    </a>
+            <div class="p-3 mb-2 bg-dark text-white ani" >
+                     <span><h2 align="center">Exam seating  arrangement system</h2>
+                <a href="/home/"><h5 align="right">LOGOUT</a> &nbsp&nbsp&nbsp<a href="/admin/">ADMIN</h5></a>
 
+</span>
                 </div>
+            <div class="bg text-success ani2" style=" width:1240px;height:450px">
+                <h5>
             <form method="POST" action="/class_select2/" >
                 {% csrf_token %}
-                <div class="row">
+                <div class="row ">
                     <div class="col-2">
-                      <div class="input-group">
+                      <div class="input-group ">
                           <span class="input-group-addon">
                             <input type="checkbox" aria-label="..." value="mca">
 
@@ -129,8 +142,8 @@ $(document).ready(function(){
      </div>
 </div>
                 </div><br>
-                <h4 align="center" class="text-danger">{{msg}}</h4>
+                <h4 align="center" class="text-primary">{{msg}}</h4>
 <h1 align="center"><button type="submit" class="bg-danger text-white btn"><i class="fas fa-sign-in-alt"></i>
                         NEXT</button></h1>
-</form></body>
+            </form></h5></div></body>
 </html>

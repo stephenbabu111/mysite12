@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import user
+from .models import user,exam_halls
 from math import ceil
 from myapp.result import result1
 
@@ -71,6 +71,8 @@ def forgot2_view(request):
 def class_select_view(request):
     return render(request,'myapp/second.html')
 def class_select2_view(request):
+    exam_hall = exam_halls.objects.all()
+
     if request.method=='POST':
         print('the data view')
         amca=request.POST.get("amca")
@@ -174,15 +176,28 @@ def class_select2_view(request):
                 msg3="select three rooms"
             if r==4:
                 msg3="select four rooms"
-            if r>=5:
-                msg3="select all rooms"
+            if r==5:
+                msg3="select five rooms"
+            if r==6:
+                msg3="select six rooms"
+            if r==7:
+                msg3="select seven rooms"
+            if r==8:
+                msg3="select eight rooms"
+            if r==9:
+                msg3="select nine rooms"
+
             print("the data is", amca, nmca, dmca, amba, nmba, amph, nmph, amcy, nmcy, amby, nmby, amma, nmma)
             print(type(amca))
             print(dict)
             print("total:  ",total)
-            return render(request,'myapp/sucess.html',{'msg3':msg3})
-
+            print(exam_hall)
+            return render(request,'myapp/sucess.html',{'msg3':msg3,'halls':exam_hall})
+    else:
+        return render(request,'myapp/sucess.html',{'msg3':msg3,'halls':exam_hall})
 def list_view(request):
+    exam_hall = exam_halls.objects.all()
+
     global total
     global room_dict1
     room_dict={}
@@ -208,26 +223,22 @@ def list_view(request):
 
         print(room_dict)
         msg4="Total "+str(total)+" students write the examination "
-        if total>room and (room-total)<=39 :
-            return render(request,"myapp/sucess.html",{'msg3':msg3},{"msg4":msg4})
+        if total<room and (room-total)<=39 :
+            return render(request,"myapp/sucess.html",{'msg3':msg3,'halls':exam_hall})
         elif (room-total)>=40 and "2p7" not in var:
-            return render(request,"myapp/sucess.html",{'msg3':"select required rooms only.you required "+msg3+"only"})
+            return render(request,"myapp/sucess.html",{'msg3':"select required rooms only.You required "+msg3+"only",'halls':exam_hall})
         else:
             room_dict1 = result1(cls_name, cls_value, room_dict)
-            return render(request,'myapp/list2.html',{'dict':room_dict})
+            return render(request,'myapp/list2.html',{'dict':var})
 
-def sp2_view(request):
+def room_view(request):
+    if request.method=='POST':
+        print("this is working")
+        get_value=request.POST.get('button')
+        print('the value is'+get_value)
     global room_dict1
-    return render(request,'myapp/sp2.html',{'dict':room_dict1['2p2']},{'room':'2p2'} )
-def sp4_view(request):
-    global room_dict1
-    return render(request,'myapp/sp2.html',{'dict':room_dict1['2p4']},{'room':'2p4'})
-def sp5_view(request):
-    global room_dict1
-    return render(request,'myapp/sp2.html',{'dict':room_dict1['2p5']},{'room':'2p5'})
-def sp6_view(request):
-    global room_dict1
-    return render(request,'myapp/sp2.html',{'dict':room_dict1['2p6']},{'room':'2p6'})
-def sp7_view(request):
-    global room_dict1
-    return render(request,'myapp/sp7.html',{'dict':room_dict1['2p7']},{'room':'2p7'})
+    if get_value=='2p7':
+        return render(request,'myapp/sp7.html',{'dict':room_dict1[get_value],'room':get_value} )
+    else:
+        return render(request, 'myapp/sp2.html', {'dict': room_dict1[get_value], 'room': get_value})
+

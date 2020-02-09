@@ -10,3 +10,8 @@ class user(models.Model):
 
     def __str__(self):
         return self.name
+class exam_halls(models.Model):
+    roomno=models.CharField(max_length=5)
+
+    def __str__(self):
+        return self.roomno

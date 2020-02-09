@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"
+{% load staticfiles %}
+<html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'css/class.css' %}">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,31 +20,35 @@
     .side1{
       margin-left: 550px;
     }
+    .bg {
+
+    background-image: url("{% static 'images/img8..jpg' %}");
+    background-repeat: no-repeat;
+        background-size:cover;
+    }
+    .btn{
+    width:100px
+    }
     </style>
 </head>
     <body class="">
 
-            <div class="card header">
-                    <a class="navbar-brand bg-danger"><img width="50px" height="50px" src="images/alclogo.png">
-                        <center>Examination Rooms</center>
-                    </a>
+            <div class="bg-secondary text-white ani" >
 
-                </div><br>
-            {% if "2p7" in dict %}
-            <a href="/2p7_view/"><button class="btn btn-primary" type="submit">2P7</button></a><br><br>
-            {% endif %}
-                {% if "2p2" in dict %}
-              <a href="/2p2_view/"><button class="btn btn-primary" type="submit">2P2</button></a><br><br>
-                {% endif %}
-                {% if "2p4" in dict %}
-            <a href="/2p4_view/"><button class="btn btn-primary" type="submit">2P4</button></a><br><br>
-                {% endif %}
-            {% if "2p5" in dict %}
-            <a href="/2p5_view/"><button class="btn btn-primary" type="submit">2P5</button></a><br><br>
-            {% endif %}
-            {% if "2p6" in dict %}
-            <a href="/2p6_view/"><button class="btn btn-primary" type="submit">2P6</button></a><br><br>
-            {% endif %}
+                <center><h1>Seating  Allotment </h1></center>
+                <a href="/class_select2/" align="left"><h5 align="right">BACK</a> &nbsp&nbsp&nbsp<a href="/admin/">ADMIN</h5></a>
 
 
-             </body>
+
+                </div>
+            <div class="bg" style="height:500px;" align="center">
+                <h2 class="text-info">click room to get view</h2>
+<form action="/room_view/" method="POST">
+    {% csrf_token %}
+                {% for i in dict %}
+
+                <a href="/{{i}}_view/"><button class="btn btn-success" type="submit" name="button" value="{{i}}">{{i}}</button></a><br><br>
+
+                {% endfor %}
+</form>
+            </div></body></html>
