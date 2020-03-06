@@ -12,6 +12,8 @@ class user(models.Model):
         return self.name
 class exam_halls(models.Model):
     roomno=models.CharField(max_length=5)
+    rows=models.PositiveSmallIntegerField(default=1)
+    columns=models.PositiveSmallIntegerField(default=1)
 
     def __str__(self):
         return self.roomno

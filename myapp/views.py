@@ -4,6 +4,7 @@ from math import ceil
 from myapp.result import result1
 global room_dict1
 global total
+global msg3
 def home_view(request):
     str=''
     return render(request,'myapp/login.html',{'msg':str})
@@ -185,6 +186,10 @@ def class_select2_view(request):
     else:
         return render(request,'myapp/sucess.html',{'msg3':msg3,'halls':exam_hall})
 def list_view(request):
+    global rows
+    global cols
+    rows={}
+    cols={}
     exam_hall = exam_halls.objects.all()
     global total
     global room_dict1
@@ -192,36 +197,26 @@ def list_view(request):
     room_dict={}
     if request.method=='POST':
         var=request.POST.getlist("checks[]")
-        count=0
-        sp2 = 40
-        sp4 = 40
-        sp5 = 40
-        sp6 = 40
-        sp7 = 100
 
         room=0
         for i in var:
-            if i=="2p7":
-                room=room+100
+            room_data=exam_halls.objects.all().filter(roomno=i)
+            rows[i]=room_data[0].rows
+            cols[i]=room_data[0].columns
+            room=room+(room_data[0].rows*room_data[0].columns)
 
-            else:
-                room=room+40
             room_dict[i] = "y"
+        print(rows,cols)
         msg4="Total "+str(total)+" students write the examination "
-        if total>room and (room-total)<=39 :
+        if total>room  :
             return render(request,"myapp/sucess.html",{'msg3':msg3,'halls':exam_hall})
-        elif (room-total)>=40 and "2p7" not in var:
-            return render(request,"myapp/sucess.html",{'msg3':"select required rooms only.You required "+msg3+"only",'halls':exam_hall})
         else:
-            room_dict1 = result1(cls_name, cls_value, room_dict)
+            room_dict1 = result1(cls_name, cls_value, room_dict,rows,cols)
             return render(request,'myapp/list2.html',{'dict':var})
 
 def room_view(request):
     if request.method=='POST':
         get_value=request.POST.get('button')
-    global room_dict1
-    if get_value=='2p7':
-        return render(request,'myapp/sp7.html',{'dict':room_dict1[get_value],'room':get_value})
-    else:
-        return render(request,'myapp/sp2.html',{'dict': room_dict1[get_value], 'room': get_value})
+        global room_dict1
+        return render(request,'myapp/sp2.html',{'dict': room_dict1[get_value], 'room': get_value,'cols':list(range(1,cols[get_value]+1))},)
 
